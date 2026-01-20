@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+/* =================================================
+   E-COMMERCE ADMIN – GLOBAL THEME (DEFAULT)
+   Palette: Modern Commerce Blue
+================================================= */
+
+:root {
+  /* ---------- BRAND ---------- */
+  --color-primary: 221 83% 53%;          /* Blue */
+  --color-primary-foreground: 0 0% 100%;
+
+  /* ---------- BACKGROUNDS ---------- */
+  --color-background: 0 0% 100%;         /* App bg */
+  --color-surface: 0 0% 98%;             /* Cards / sidebar */
+  --color-border: 220 13% 91%;           /* Dividers */
+
+  /* ---------- TEXT ---------- */
+  --text-primary: 222 47% 11%;           /* Headings */
+  --text-secondary: 215 16% 47%;         /* Body */
+  --text-muted: 215 20% 65%;             /* Labels / hints */
+  --text-inverse: 0 0% 100%;
+
+  /* ---------- UI STATES ---------- */
+  --color-hover: 220 14% 96%;
+  --color-selected: 220 14% 93%;
+
+  /* ---------- STATUS COLORS ---------- */
+  --color-success: 142 71% 45%;
+  --color-warning: 38 92% 50%;
+  --color-danger: 0 84% 60%;
+  --color-info: 221 83% 53%;
+}
+
+/* ---------- DARK MODE ---------- */
+.dark {
+  --color-background: 222 47% 11%;
+  --color-surface: 223 47% 14%;
+  --color-border: 217 19% 27%;
+
+  --text-primary: 0 0% 100%;
+  --text-secondary: 215 20% 65%;
+  --text-muted: 215 16% 47%;
+  --text-inverse: 222 47% 11%;
+
+  --color-hover: 217 19% 27%;
+  --color-selected: 217 19% 32%;
+}
