@@ -8,6 +8,10 @@ import Signup from "./pages/auth/Signup"
 import QuestionTable from "./pages/question/QuestionTable"
 import EditQuestion from "./pages/question/EditQuestion"
 import CreateQuestion from "./pages/question/CreateQuestion"
+import Products from "./pages/products/Products"
+import AddProduct from "./pages/products/AddProducts"
+import Categories from "./pages/products/Categories"
+import Subcategories from "./pages/products/Subcategories"
 
 
 export const router = createBrowserRouter([
@@ -42,6 +46,13 @@ export const router = createBrowserRouter([
     //   { path: "products", element: <Products /> },
     //   { path: "orders", element: <Orders /> },
     //   { path: "customers", element: <Customers /> },
+
+    // ✅ PRODUCTS ROUTES
+      { path: "products", element: <Products /> },
+      { path: "products/create", element: <AddProduct /> },
+      { path: "products/categories", element: <Categories /> },
+      { path: "products/subcategories", element: <Subcategories /> },
+
 
       // 👇 MUST be last
       { path: "*", element: <NotFound /> },

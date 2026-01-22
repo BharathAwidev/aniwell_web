@@ -14,7 +14,7 @@ export default function Topbar({ onMenuClick }: Props) {
         ☰
       </button>
 
-      <h1 className="text-lg font-semibold">E-Commerce Admin</h1>
+      <h1 className="text-lg font-semibold">Interior Admin</h1>
 
       <div className="ml-auto text-sm text-gray-600">
         Admin

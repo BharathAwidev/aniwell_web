@@ -46,3 +46,14 @@
   --color-hover: 217 19% 27%;
   --color-selected: 217 19% 32%;
 }
+
+
+
+*{
+  box-sizing:border-box;
+}
+
+html, body{
+  width: 100%;
+  over-flow-x:hidden;
+}

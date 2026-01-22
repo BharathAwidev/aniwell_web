@@ -1,4 +1,4 @@
-import { api } from "../lib/api"
+import { api } from "../api/client"
 
 export const createQuestion = (data: any) => {
     return api.post("/questions", data)

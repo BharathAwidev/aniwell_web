@@ -17,7 +17,7 @@ export default function AuthLayout() {
             className="h-10 w-10 object-contain"
           />
           <span className="text-xl font-bold">
-            E-Commerce Admin
+            Interior Admin
           </span>
         </div>
 
