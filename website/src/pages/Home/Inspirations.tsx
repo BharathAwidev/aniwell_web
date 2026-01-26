@@ -1,4 +1,3 @@
-
 const Inspirations = () => {
   const inspirations = [
     {
@@ -28,11 +27,11 @@ const Inspirations = () => {
   ];
 
   return (
-    <section className="w-full py-16 md:py-24 bg-white">
+    <section className="w-full py-12 md:py-16 bg-white"> {/* Reduced padding */}
       <div className="container mx-auto px-4 md:px-8 lg:px-16">
         {/* Header Section */}
-        <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+        <div className="max-w-4xl mx-auto text-center mb-8 md:mb-10"> {/* Reduced margin-bottom */}
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4"> {/* Reduced margin-bottom */}
             Inspiration for home interior designs
           </h2>
           <p className="text-lg md:text-xl text-gray-600">
@@ -41,13 +40,13 @@ const Inspirations = () => {
         </div>
 
         {/* Divider */}
-        <div className="max-w-4xl mx-auto mb-12 md:mb-16">
+        <div className="max-w-4xl mx-auto mb-8 md:mb-10"> {/* Reduced margin-bottom */}
           <div className="border-t border-gray-300"></div>
         </div>
 
         {/* Image Grid Gallery */}
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 md:gap-4 lg:gap-5"> {/* Reduced gaps */}
             {inspirations.map((item, index) => (
               <div 
                 key={index}
@@ -65,10 +64,10 @@ const Inspirations = () => {
                 </div>
                 
                 {/* Title Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent"> {/* Reduced padding */}
                   <div className="flex items-center">
                     <span className="text-orange-400 mr-2 text-lg font-bold">-</span>
-                    <h3 className="text-lg md:text-xl font-semibold text-white">
+                    <h3 className="text-base md:text-lg font-semibold text-white"> {/* Reduced font size */}
                       {item.title}
                     </h3>
                   </div>
@@ -79,15 +78,15 @@ const Inspirations = () => {
         </div>
 
         {/* Bottom Divider */}
-        <div className="max-w-4xl mx-auto mt-12 md:mt-16">
+        <div className="max-w-4xl mx-auto mt-8 md:mt-10"> {/* Reduced margin-top */}
           <div className="border-t border-gray-300"></div>
         </div>
 
         {/* View All Button */}
-        <div className="max-w-4xl mx-auto mt-12 md:mt-16 text-center">
-          <button className="inline-flex items-center px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105">
-            <span className="text-lg">View All</span>
-            <span className="ml-3 text-xl">→</span>
+        <div className="max-w-4xl mx-auto mt-8 md:mt-10 text-center"> {/* Reduced margin-top */}
+          <button className="inline-flex items-center px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105"> {/* Reduced padding */}
+            <span className="text-base">View All</span> {/* Reduced font size */}
+            <span className="ml-2 text-lg">→</span> {/* Reduced margin */}
           </button>
         </div>
       </div>
