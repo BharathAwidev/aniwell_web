@@ -1,0 +1,138 @@
+{
+  "name": "Home",
+  "type": "configurator",
+  "steps": [
+    {
+      "title": "BHK Type",
+      "fields": [
+        {
+          "label": "Select BHK Type",
+          "type": "single_select",
+          "options": [
+            {
+              "temp_id": "3ae33986-e03e-4f7c-89fb-92695a40a587",
+              "label": "1 BHK",
+              "image_url": "",
+              "meta": {
+                
+              },
+              "variants": [
+                {
+                  "id": "b6b67822-07c0-4b12-9c7d-8ed8b7208512",
+                  "label": "Small",
+                  "image_url": ""
+                },
+                {
+                  "id": "4434dc4a-e702-47d2-b2e3-3b38cbbd68e5",
+                  "label": "Large",
+                  "image_url": ""
+                }
+              ]
+            },
+            {
+              "temp_id": "26df4317-82ab-4373-a649-a7dcceb9a142",
+              "label": "2 BHK",
+              "image_url": "",
+              "meta": {
+                
+              },
+              "variants": [
+                {
+                  "id": "0a82eeaa-77c6-4fb0-b45f-3205ace80975",
+                  "label": "Small",
+                  "image_url": ""
+                },
+                {
+                  "id": "2a7596d2-8d67-4654-a5b2-e519647a8df6",
+                  "label": "Large",
+                  "image_url": ""
+                }
+              ]
+            }
+          ],
+          "enable_variants": true
+        }
+      ]
+    },
+    {
+      "title": "Rooms to design",
+      "fields": [
+        {
+          "label": "Living Room",
+          "type": "number",
+          "options": [
+            
+          ],
+          "enable_variants": false,
+          "number_meta": {
+            "input_mode": "stepper",
+            "unit": "ft",
+            "min": 0,
+            "step": 2,
+            "max": 10
+          }
+        },
+        {
+          "label": "Kitchen",
+          "type": "number",
+          "options": [
+            
+          ],
+          "enable_variants": false,
+          "number_meta": {
+            "input_mode": "stepper",
+            "unit": "ft",
+            "min": 2,
+            "step": 2,
+            "max": 10
+          }
+        }
+      ]
+    },
+    {
+      "title": "Package",
+      "fields": [
+        {
+          "label": "Pick your package",
+          "type": "single_select",
+          "options": [
+            {
+              "temp_id": "c9ff1ce4-332a-4805-a2f9-316d096b4242",
+              "label": " Essentials (₹₹)",
+              "image_url": "",
+              "meta": {
+                
+              },
+              "variants": [
+                
+              ]
+            },
+            {
+              "temp_id": "bef79ca6-afeb-462e-b098-275340d99c49",
+              "label": "Premium (₹₹₹)",
+              "image_url": "",
+              "meta": {
+                
+              },
+              "variants": [
+                
+              ]
+            },
+            {
+              "temp_id": "8f3aabf8-afb5-4534-bb63-e779d67c9156",
+              "label": " Luxe (₹₹₹₹)",
+              "image_url": "",
+              "meta": {
+                
+              },
+              "variants": [
+                
+              ]
+            }
+          ],
+          "enable_variants": false
+        }
+      ]
+    }
+  ]
+}
