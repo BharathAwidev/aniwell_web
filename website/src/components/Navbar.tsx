@@ -4,6 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { SectionAPI } from "../../api/section.api";
 import { type SectionData, type SubcategoryData } from "../../api/section.api";
 
+// Import your logo image
+import logo from "../assets/Interior logo.png"; // Adjust path as needed
+
 type MenuKey = string;
 
 // Interface for transformed category data
@@ -31,51 +34,47 @@ const Navbar = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const navigate = useNavigate();
+
+  // Handle scroll effect for navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    // Set initial state
+    handleScroll();
+    
+    // Add scroll event listener
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Helper function to extract array from API response
   const extractArrayFromResponse = <T,>(response: any): T[] => {
-    // If response is already an array, return it
     if (Array.isArray(response)) {
       return response;
     }
     
-    // If response has a data property that's an array
-    if (response && typeof response === 'object' && Array.isArray(response.data)) {
-      return response.data;
-    }
-    
-    // If response has a results property that's an array
-    if (response && typeof response === 'object' && Array.isArray(response.results)) {
-      return response.results;
-    }
-    
-    // If response has an items property that's an array
-    if (response && typeof response === 'object' && Array.isArray(response.items)) {
-      return response.items;
-    }
-    
-    // If response has a list property that's an array
-    if (response && typeof response === 'object' && Array.isArray(response.list)) {
-      return response.list;
-    }
-    
-    // If response is an object with values that should be an array
     if (response && typeof response === 'object') {
-      // Try to find any array property
+      if (Array.isArray(response.data)) return response.data;
+      if (Array.isArray(response.results)) return response.results;
+      if (Array.isArray(response.items)) return response.items;
+      if (Array.isArray(response.list)) return response.list;
+      
       const arrayKey = Object.keys(response).find(key => Array.isArray(response[key]));
       if (arrayKey) {
         return response[arrayKey];
       }
       
-      // If the object itself looks like it should be an array of objects
       const values = Object.values(response);
       if (values.length > 0 && values.every(v => typeof v === 'object' && v !== null)) {
         return values as T[];
       }
     }
     
-    // If nothing matches, return empty array
     console.warn("Could not extract array from API response:", response);
     return [];
   };
@@ -86,32 +85,19 @@ const Navbar = () => {
       try {
         setLoading(true);
         
-        // Fetch sections (main categories)
         const sectionsResponse = await SectionAPI.getAll();
-        console.log("Sections API Response:", sectionsResponse);
-        
-        // Extract sections array from response
         const sections: SectionData[] = extractArrayFromResponse<SectionData>(sectionsResponse);
-        console.log("Extracted sections:", sections);
         
-        // Fetch all subcategories
         const subcategoriesResponse = await SectionAPI.getAllSubcategories();
-        console.log("Subcategories API Response:", subcategoriesResponse);
-        
-        // Extract subcategories array from response
         const allSubcategories: SubcategoryData[] = extractArrayFromResponse<SubcategoryData>(subcategoriesResponse);
-        console.log("Extracted subcategories:", allSubcategories);
         
-        // Transform API data to match our component structure
         const transformedCategories: Category[] = sections
-          .filter((section: SectionData) => section.status === "YES") // Only show active sections
+          .filter((section: SectionData) => section.status === "YES")
           .map((section: SectionData) => {
-            // Get subcategories for this section
             const sectionSubcategories = allSubcategories
               .filter((sub: SubcategoryData) => {
-                // Handle both section_id and sectionId properties
                 const sectionId = sub.sectionId || (sub as any).section_id;
-                return sectionId === section.id && sub.status === "YES"; // Only show active subcategories
+                return sectionId === section.id && sub.status === "YES";
               })
               .map((sub: SubcategoryData) => ({
                 id: sub.id || "",
@@ -132,15 +118,11 @@ const Navbar = () => {
             };
           });
 
-        console.log("Transformed categories:", transformedCategories);
         setCategories(transformedCategories);
         setError(null);
       } catch (err: any) {
         console.error("Error fetching navigation data:", err);
-        console.error("Error details:", err.message, err.response?.data);
         setError("Failed to load navigation data");
-        
-        // Fallback to default data if API fails
         setCategories(getFallbackCategories());
       } finally {
         setLoading(false);
@@ -240,27 +222,19 @@ const Navbar = () => {
       },
       {
         id: "5",
-        name: "More",
-        slug: "more",
-        description: "Additional information about us",
-        hasDropdown: true,
-        status: "YES",
-        subCategories: [
-          {
-            id: "8",
-            name: "About Us",
-            slug: "about-us",
-            description: "Learn more about our company",
-            status: "YES"
-          },
-          {
-            id: "9",
-            name: "Contact Us",
-            slug: "contact-us",
-            description: "Get in touch with us",
-            status: "YES"
-          }
-        ]
+        name: "About",
+        slug: "about",
+        description: "Learn more about our company",
+        hasDropdown: false,
+        status: "YES"
+      },
+      {
+        id: "6",
+        name: "Contact",
+        slug: "contact",
+        description: "Get in touch with us",
+        hasDropdown: false,
+        status: "YES"
       }
     ];
   };
@@ -298,26 +272,27 @@ const Navbar = () => {
     setMobileOpenMenu(null);
   };
 
-  // Debug: Log current categories
-  useEffect(() => {
-    if (categories.length > 0) {
-      console.log("Current categories in Navbar:", categories);
-    }
-  }, [categories]);
-
   if (loading) {
     return (
-      <nav className="sticky top-0 z-50 w-full bg-white shadow-md">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <nav className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
+        isScrolled ? 'bg-white shadow-lg py-2' : 'bg-white py-3'
+      }`}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link to="/" className="navbar-logo text-2xl font-bold whitespace-nowrap">
-              <span className="text-gray-900">Aniwell</span>
-              <span className="text-gray-600"> Interiors</span>
-            </Link>
-            <div className="hidden md:flex space-x-4">
+            <div className="flex items-center space-x-3">
+              <div className="w-12 h-12 bg-gray-200 animate-pulse rounded-full"></div>
+              <div className="hidden sm:block">
+                <div className="h-6 w-36 bg-gray-200 animate-pulse rounded"></div>
+                <div className="h-4 w-24 bg-gray-200 animate-pulse rounded mt-1"></div>
+              </div>
+            </div>
+            <div className="hidden lg:flex space-x-4">
               <div className="h-6 w-20 bg-gray-200 animate-pulse rounded"></div>
               <div className="h-6 w-24 bg-gray-200 animate-pulse rounded"></div>
               <div className="h-6 w-20 bg-gray-200 animate-pulse rounded"></div>
+            </div>
+            <div className="lg:hidden">
+              <div className="h-8 w-8 bg-gray-200 animate-pulse rounded"></div>
             </div>
           </div>
         </div>
@@ -325,23 +300,6 @@ const Navbar = () => {
     );
   }
 
-  if (error && categories.length === 0) {
-    return (
-      <nav className="sticky top-0 z-50 w-full bg-white shadow-md">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <Link to="/" className="navbar-logo text-2xl font-bold whitespace-nowrap">
-              <span className="text-gray-900">Aniwell</span>
-              <span className="text-gray-600"> Interiors</span>
-            </Link>
-            <div className="text-red-500 text-sm">{error}</div>
-          </div>
-        </div>
-      </nav>
-    );
-  }
-
-  // If no categories from API but no error, show fallback
   const displayCategories = categories.length > 0 ? categories : getFallbackCategories();
 
   return (
@@ -349,7 +307,7 @@ const Navbar = () => {
       {/* Backdrop for mobile menu */}
       {isMenuOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+          className="fixed inset-0 bg-black/70 z-40 lg:hidden transition-opacity duration-300 ease-in-out"
           onClick={() => {
             setIsMenuOpen(false);
             setMobileOpenMenu(null);
@@ -357,42 +315,73 @@ const Navbar = () => {
         />
       )}
 
-      <nav className="sticky top-0 z-50 w-full bg-white shadow-md">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <nav className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-white shadow-lg py-1 border-b border-gray-100' 
+          : 'bg-white/95 backdrop-blur-sm py-2'
+      }`}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <Link to="/" className="navbar-logo text-2xl font-bold whitespace-nowrap">
-              <span className="text-gray-900">Aniwell</span>
-              <span className="text-gray-600"> Interiors</span>
+            {/* Logo and Brand */}
+            <Link to="/" className="flex items-center space-x-3 group">
+              {/* Logo Image */}
+              <div className="flex items-center justify-center">
+                <img 
+                  src={logo} 
+                  alt="Aniwell Interiors" 
+                  className="h-12 w-auto object-contain transition-all duration-300 group-hover:scale-105"
+                />
+              </div>
+              {/* Brand Name - Visible on larger screens */}
+              <div className="hidden sm:flex flex-col">
+                <span className="text-xl font-bold text-gray-900 tracking-tight leading-tight">Aniwell Interiors</span>
+                <span className="text-xs font-light text-gray-600 leading-tight">Your Dream Our Design</span>
+              </div>
             </Link>
 
-            {/* Desktop Menu */}
-            <ul className="hidden md:flex items-center space-x-4 lg:space-x-6 xl:space-x-8">
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-1 xl:space-x-2">
               {displayCategories.map((category) => (
-                <li key={category.id} className="relative group">
+                <div key={category.id} className="relative group">
                   {category.hasDropdown ? (
                     <>
                       <button
-                        className="flex items-center text-gray-700 hover:text-gray-900 transition-colors font-medium cursor-pointer py-2 px-2 whitespace-nowrap"
+                        className="flex items-center text-gray-700 hover:text-blue-700 transition-all duration-200 font-medium cursor-pointer py-2 px-3 xl:px-4 whitespace-nowrap rounded-lg hover:bg-gray-50/80 group"
                         onClick={() => handleMainMenuClick(category.slug)}
                       >
-                        {category.name}
-                        <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <span className="font-medium text-sm xl:text-base">{category.name}</span>
+                        <svg 
+                          className="w-4 h-4 ml-1 text-gray-500 group-hover:text-blue-700 transition-transform duration-200 group-hover:rotate-180" 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                        >
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                       </button>
                       
-                      {/* Dropdown */}
+                      {/* Dropdown Menu */}
                       {category.subCategories && category.subCategories.length > 0 && (
-                        <div className="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 border border-gray-100">
+                        <div className="absolute left-0 mt-1 w-56 bg-white rounded-lg shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 border border-gray-100 overflow-hidden">
                           <div className="py-2">
+                            <div className="px-4 py-2 border-b border-gray-100 bg-gray-50">
+                              <span className="text-xs font-semibold text-blue-700 uppercase tracking-wider">{category.name}</span>
+                            </div>
                             {category.subCategories.map((subCategory) => (
                               <button
                                 key={subCategory.id}
                                 onClick={() => handleSubmenuClick(category.slug, subCategory.slug)}
-                                className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+                                className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:text-blue-700 hover:bg-blue-50/50 transition-colors duration-150 border-b border-gray-50 last:border-b-0 group/item"
                               >
-                                {subCategory.name}
+                                <div className="flex items-center">
+                                  <span className="flex-1 font-medium">{subCategory.name}</span>
+                                  <svg className="w-4 h-4 text-blue-500 opacity-0 group-hover/item:opacity-100 transition-opacity duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                                  </svg>
+                                </div>
+                                {subCategory.description && (
+                                  <p className="text-xs text-gray-500 mt-1 truncate">{subCategory.description}</p>
+                                )}
                               </button>
                             ))}
                           </div>
@@ -402,46 +391,80 @@ const Navbar = () => {
                   ) : (
                     <button
                       onClick={() => handleMainMenuClick(category.slug)}
-                      className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2 px-2 whitespace-nowrap"
+                      className="text-gray-700 hover:text-blue-700 transition-all duration-200 font-medium py-2 px-3 xl:px-4 whitespace-nowrap rounded-lg hover:bg-gray-50/80 text-sm xl:text-base"
                     >
                       {category.name}
                     </button>
                   )}
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+              className="lg:hidden p-2 rounded-lg text-gray-700 hover:text-blue-700 hover:bg-gray-100 transition-colors duration-200 relative z-50"
               onClick={() => {
                 setIsMenuOpen(!isMenuOpen);
                 setMobileOpenMenu(null);
               }}
               aria-label="Toggle menu"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}></path>
-              </svg>
+              {isMenuOpen ? (
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              ) : (
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+              )}
             </button>
           </div>
 
-          {/* Mobile Menu */}
-          {isMenuOpen && (
-            <div className="md:hidden fixed left-0 right-0 top-16 bottom-0 bg-white z-40 overflow-y-auto">
-              <div className="py-2 px-4">
-                <ul className="space-y-1">
+          {/* Mobile Navigation Menu */}
+          <div className={`lg:hidden fixed inset-0 top-16 bottom-0 bg-white z-40 overflow-y-auto transition-transform duration-300 ease-in-out ${
+            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}>
+            <div className="p-4 h-full flex flex-col">
+              {/* Mobile Logo and Brand */}
+              <div className="flex items-center space-x-3 mb-8 pb-4 border-b border-gray-100">
+                <img 
+                  src={logo} 
+                  alt="Aniwell Interiors" 
+                  className="h-12 w-auto object-contain"
+                />
+                <div className="flex flex-col">
+                  <span className="text-xl font-bold text-gray-900">Aniwell Interiors</span>
+                  <span className="text-xs font-light text-gray-600">Premium Interior Solutions</span>
+                </div>
+              </div>
+
+              {/* Mobile Categories List */}
+              <div className="flex-1 overflow-y-auto">
+                <ul className="space-y-2">
                   {displayCategories.map((category) => (
-                    <li key={category.id} className="border-b border-gray-100 last:border-b-0">
+                    <li key={category.id} className="rounded-lg overflow-hidden">
                       {category.hasDropdown ? (
                         <>
                           <button
-                            className="flex items-center justify-between w-full px-4 py-3 text-gray-700 hover:bg-gray-50 text-left rounded-lg transition-colors"
+                            className="flex items-center justify-between w-full px-4 py-3 text-gray-900 hover:bg-blue-50 text-left transition-colors duration-200 rounded-lg"
                             onClick={() => toggleMobileMenu(category.slug)}
                           >
-                            <span className="font-medium">{category.name}</span>
+                            <div className="flex items-center">
+                              <div className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-lg mr-3">
+                                <svg className="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                              </div>
+                              <div className="text-left">
+                                <span className="font-semibold text-gray-900 block">{category.name}</span>
+                                <span className="text-xs text-gray-600 mt-0.5 line-clamp-1">{category.description}</span>
+                              </div>
+                            </div>
                             <svg 
-                              className={`w-5 h-5 transition-transform duration-200 ${mobileOpenMenu === category.slug ? 'transform rotate-180' : ''}`} 
+                              className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${
+                                mobileOpenMenu === category.slug ? 'transform rotate-180 text-blue-700' : ''
+                              }`} 
                               fill="none" 
                               stroke="currentColor" 
                               viewBox="0 0 24 24"
@@ -452,18 +475,25 @@ const Navbar = () => {
                           
                           {/* Mobile Submenu */}
                           {mobileOpenMenu === category.slug && category.subCategories && category.subCategories.length > 0 && (
-                            <div className="bg-gray-50 border-l-2 border-blue-500 ml-4 mt-1 rounded-r-lg">
-                              <ul className="py-2 space-y-1">
+                            <div className="ml-12 mt-1 mb-2 rounded-lg bg-gray-50/50">
+                              <ul className="space-y-1 p-2">
                                 {category.subCategories.map((subCategory) => (
                                   <li key={subCategory.id}>
                                     <button
                                       onClick={() => handleSubmenuClick(category.slug, subCategory.slug)}
-                                      className="flex items-center w-full text-left px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+                                      className="flex items-center w-full text-left px-3 py-2.5 text-sm text-gray-700 hover:text-blue-700 hover:bg-white rounded-lg transition-colors duration-150 border border-transparent hover:border-blue-200 group"
                                     >
-                                      <svg className="w-3 h-3 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                                      </svg>
-                                      {subCategory.name}
+                                      <div className="w-7 h-7 flex items-center justify-center bg-white rounded-md mr-3 shadow-sm">
+                                        <svg className="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                      </div>
+                                      <div className="flex-1 text-left">
+                                        <span className="font-medium block">{subCategory.name}</span>
+                                        {subCategory.description && (
+                                          <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">{subCategory.description}</p>
+                                        )}
+                                      </div>
                                     </button>
                                   </li>
                                 ))}
@@ -474,22 +504,64 @@ const Navbar = () => {
                       ) : (
                         <button
                           onClick={() => handleMainMenuClick(category.slug)}
-                          className="flex items-center justify-between w-full px-4 py-3 text-gray-700 hover:bg-gray-50 text-left rounded-lg transition-colors"
+                          className="flex items-center w-full px-4 py-3 text-gray-900 hover:bg-blue-50 text-left rounded-lg transition-colors duration-200"
                         >
-                          <span className="font-medium">{category.name}</span>
-                          <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                          </svg>
+                          <div className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-lg mr-3">
+                            <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                          </div>
+                          <div className="text-left">
+                            <span className="font-semibold text-gray-900 block">{category.name}</span>
+                            <span className="text-xs text-gray-600 mt-0.5 line-clamp-1">{category.description}</span>
+                          </div>
                         </button>
                       )}
                     </li>
                   ))}
                 </ul>
               </div>
+
+              {/* Mobile Contact Section */}
+              <div className="mt-6 pt-6 border-t border-gray-200">
+                <div className="bg-gradient-to-r from-blue-50 to-white rounded-xl p-4">
+                  <h4 className="text-base font-semibold text-gray-900 mb-2 flex items-center">
+                    <svg className="w-5 h-5 mr-2 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    </svg>
+                    Contact Us
+                  </h4>
+                  <p className="text-sm text-gray-600 mb-3">Get professional interior design consultation</p>
+                  <div className="space-y-2">
+                    <a href="tel:+15551234567" className="flex items-center text-sm text-blue-700 font-medium hover:text-blue-800 transition-colors">
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                      </svg>
+                      +1 (555) 123-4567
+                    </a>
+                    <a href="mailto:info@aniwellinteriors.com" className="flex items-center text-sm text-blue-700 font-medium hover:text-blue-800 transition-colors">
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                      </svg>
+                      info@aniwellinteriors.com
+                    </a>
+                  </div>
+                </div>
+                
+                {/* Mobile Footer Note */}
+                <div className="mt-4 pt-4 border-t border-gray-200 text-center">
+                  <p className="text-xs text-gray-500">
+                    © {new Date().getFullYear()} Aniwell Interiors. All rights reserved.
+                  </p>
+                </div>
+              </div>
             </div>
-          )}
+          </div>
         </div>
       </nav>
+
+      {/* Spacer to prevent content from going under fixed navbar */}
+      <div className="h-16"></div>
     </>
   );
 };
