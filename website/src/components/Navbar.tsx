@@ -5,7 +5,7 @@ import { SectionAPI } from "../../api/section.api";
 import { type SectionData, type SubcategoryData } from "../../api/section.api";
 
 // Import your logo image
-import logo from "../assets/Interior logo.png"; // Adjust path as needed
+import logo from "../assets/logo.png"; // Adjust path as needed
 
 type MenuKey = string;
 
@@ -333,10 +333,10 @@ const Navbar = () => {
                 />
               </div>
               {/* Brand Name - Visible on larger screens */}
-              <div className="hidden sm:flex flex-col">
+              {/* <div className="hidden sm:flex flex-col">
                 <span className="text-xl font-bold text-gray-900 tracking-tight leading-tight">Aniwell Interiors</span>
                 <span className="text-xs font-light text-gray-600 leading-tight">Your Dream Our Design</span>
-              </div>
+              </div> */}
             </Link>
 
             {/* Desktop Navigation */}
@@ -346,12 +346,12 @@ const Navbar = () => {
                   {category.hasDropdown ? (
                     <>
                       <button
-                        className="flex items-center text-gray-700 hover:text-blue-700 transition-all duration-200 font-medium cursor-pointer py-2 px-3 xl:px-4 whitespace-nowrap rounded-lg hover:bg-gray-50/80 group"
+                        className="flex items-center text-gray-700 hover:text-blue-700 transition-all duration-200 font-medium cursor-pointer py-2 px-3 xl:px-4 whitespace-nowrap group"
                         onClick={() => handleMainMenuClick(category.slug)}
                       >
                         <span className="font-medium text-sm xl:text-base">{category.name}</span>
                         <svg 
-                          className="w-4 h-4 ml-1 text-gray-500 group-hover:text-blue-700 transition-transform duration-200 group-hover:rotate-180" 
+                          className="w-4 h-4 ml-1 text-gray-500 group-hover:text-blue-700 transition-transform duration-200" 
                           fill="none" 
                           stroke="currentColor" 
                           viewBox="0 0 24 24"
@@ -371,13 +371,10 @@ const Navbar = () => {
                               <button
                                 key={subCategory.id}
                                 onClick={() => handleSubmenuClick(category.slug, subCategory.slug)}
-                                className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:text-blue-700 hover:bg-blue-50/50 transition-colors duration-150 border-b border-gray-50 last:border-b-0 group/item"
+                                className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:text-blue-700 hover:bg-blue-50/50 transition-colors duration-150 border-b border-gray-50 last:border-b-0"
                               >
                                 <div className="flex items-center">
                                   <span className="flex-1 font-medium">{subCategory.name}</span>
-                                  <svg className="w-4 h-4 text-blue-500 opacity-0 group-hover/item:opacity-100 transition-opacity duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                                  </svg>
                                 </div>
                                 {subCategory.description && (
                                   <p className="text-xs text-gray-500 mt-1 truncate">{subCategory.description}</p>
@@ -391,7 +388,7 @@ const Navbar = () => {
                   ) : (
                     <button
                       onClick={() => handleMainMenuClick(category.slug)}
-                      className="text-gray-700 hover:text-blue-700 transition-all duration-200 font-medium py-2 px-3 xl:px-4 whitespace-nowrap rounded-lg hover:bg-gray-50/80 text-sm xl:text-base"
+                      className="text-gray-700 hover:text-blue-700 transition-all duration-200 font-medium py-2 px-3 xl:px-4 whitespace-nowrap text-sm xl:text-base"
                     >
                       {category.name}
                     </button>
@@ -427,7 +424,7 @@ const Navbar = () => {
           }`}>
             <div className="p-4 h-full flex flex-col">
               {/* Mobile Logo and Brand */}
-              <div className="flex items-center space-x-3 mb-8 pb-4 border-b border-gray-100">
+              {/* <div className="flex items-center space-x-3 mb-8 pb-4 border-b border-gray-100">
                 <img 
                   src={logo} 
                   alt="Aniwell Interiors" 
@@ -437,7 +434,7 @@ const Navbar = () => {
                   <span className="text-xl font-bold text-gray-900">Aniwell Interiors</span>
                   <span className="text-xs font-light text-gray-600">Premium Interior Solutions</span>
                 </div>
-              </div>
+              </div> */}
 
               {/* Mobile Categories List */}
               <div className="flex-1 overflow-y-auto">
@@ -447,15 +444,10 @@ const Navbar = () => {
                       {category.hasDropdown ? (
                         <>
                           <button
-                            className="flex items-center justify-between w-full px-4 py-3 text-gray-900 hover:bg-blue-50 text-left transition-colors duration-200 rounded-lg"
+                            className="flex items-center justify-between w-full px-4 py-3 text-gray-900 hover:text-blue-700 text-left transition-colors duration-200"
                             onClick={() => toggleMobileMenu(category.slug)}
                           >
                             <div className="flex items-center">
-                              <div className="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-lg mr-3">
-                                <svg className="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-                                </svg>
-                              </div>
                               <div className="text-left">
                                 <span className="font-semibold text-gray-900 block">{category.name}</span>
                                 <span className="text-xs text-gray-600 mt-0.5 line-clamp-1">{category.description}</span>
@@ -475,19 +467,14 @@ const Navbar = () => {
                           
                           {/* Mobile Submenu */}
                           {mobileOpenMenu === category.slug && category.subCategories && category.subCategories.length > 0 && (
-                            <div className="ml-12 mt-1 mb-2 rounded-lg bg-gray-50/50">
+                            <div className="ml-4 mt-1 mb-2">
                               <ul className="space-y-1 p-2">
                                 {category.subCategories.map((subCategory) => (
                                   <li key={subCategory.id}>
                                     <button
                                       onClick={() => handleSubmenuClick(category.slug, subCategory.slug)}
-                                      className="flex items-center w-full text-left px-3 py-2.5 text-sm text-gray-700 hover:text-blue-700 hover:bg-white rounded-lg transition-colors duration-150 border border-transparent hover:border-blue-200 group"
+                                      className="flex items-center w-full text-left px-3 py-2.5 text-sm text-gray-700 hover:text-blue-700 transition-colors duration-150"
                                     >
-                                      <div className="w-7 h-7 flex items-center justify-center bg-white rounded-md mr-3 shadow-sm">
-                                        <svg className="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                                        </svg>
-                                      </div>
                                       <div className="flex-1 text-left">
                                         <span className="font-medium block">{subCategory.name}</span>
                                         {subCategory.description && (
@@ -504,13 +491,8 @@ const Navbar = () => {
                       ) : (
                         <button
                           onClick={() => handleMainMenuClick(category.slug)}
-                          className="flex items-center w-full px-4 py-3 text-gray-900 hover:bg-blue-50 text-left rounded-lg transition-colors duration-200"
+                          className="flex items-center w-full px-4 py-3 text-gray-900 hover:text-blue-700 text-left transition-colors duration-200"
                         >
-                          <div className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-lg mr-3">
-                            <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                          </div>
                           <div className="text-left">
                             <span className="font-semibold text-gray-900 block">{category.name}</span>
                             <span className="text-xs text-gray-600 mt-0.5 line-clamp-1">{category.description}</span>
@@ -522,33 +504,8 @@ const Navbar = () => {
                 </ul>
               </div>
 
-              {/* Mobile Contact Section */}
+              {/* Mobile Footer Note */}
               <div className="mt-6 pt-6 border-t border-gray-200">
-                <div className="bg-gradient-to-r from-blue-50 to-white rounded-xl p-4">
-                  <h4 className="text-base font-semibold text-gray-900 mb-2 flex items-center">
-                    <svg className="w-5 h-5 mr-2 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                    </svg>
-                    Contact Us
-                  </h4>
-                  <p className="text-sm text-gray-600 mb-3">Get professional interior design consultation</p>
-                  <div className="space-y-2">
-                    <a href="tel:+15551234567" className="flex items-center text-sm text-blue-700 font-medium hover:text-blue-800 transition-colors">
-                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                      </svg>
-                      +1 (555) 123-4567
-                    </a>
-                    <a href="mailto:info@aniwellinteriors.com" className="flex items-center text-sm text-blue-700 font-medium hover:text-blue-800 transition-colors">
-                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                      </svg>
-                      info@aniwellinteriors.com
-                    </a>
-                  </div>
-                </div>
-                
-                {/* Mobile Footer Note */}
                 <div className="mt-4 pt-4 border-t border-gray-200 text-center">
                   <p className="text-xs text-gray-500">
                     © {new Date().getFullYear()} Aniwell Interiors. All rights reserved.
