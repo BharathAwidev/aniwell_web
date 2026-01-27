@@ -5,9 +5,6 @@ import NotFound from "./pages/NotFound"
 import AuthLayout from "./pages/auth/AuthLayout"
 import Login from "./pages/auth/Login"
 import Signup from "./pages/auth/Signup"
-import QuestionTable from "./pages/question/QuestionTable"
-import EditQuestion from "./pages/question/EditQuestion"
-import CreateQuestion from "./pages/question/CreateQuestion"
 import Products from "./pages/products/Products"
 import AddProduct from "./pages/products/AddProducts"
 import Categories from "./pages/products/Categories"
@@ -31,17 +28,17 @@ export const router = createBrowserRouter([
     element: <AdminLayout />,
     children: [
       { index: true, element: <RuntimeStepperPage /> },
-      {
-        path: "settings/theme",
-        element: <QuestionTable />,
-      },
-      {
-        path: "/questions/:id/edit",
-            element: <EditQuestion />
-      }, {
-        path: "/questions/new",
-            element: <CreateQuestion />
-      },
+      // {
+      //   path: "settings/theme",
+      //   element: <QuestionTable />,
+      // },
+      // {
+      //   path: "/questions/:id/edit",
+      //       element: <EditQuestion />
+      // }, {
+      //   path: "/questions/new",
+      //       element: <CreateQuestion />
+      // },
       //  {
       //   path: "settings/theme",
       //   element: <ThemeSettings />,

@@ -30,25 +30,6 @@ export default function FlowBuilderPage({
                     type: result.flow.flow_type,
                     steps: result.steps
                 })
-
-                // const mappedSteps: Step[] = result.steps.map((s: any) => ({
-                //   step_id: s.step_id,
-                //   title: s.title,
-                //   fields: s.fields.map((f: any) => ({
-                //     field_id: f.field_id,
-                //     label: f.label,
-                //     type: f.field_type,
-                //     options: f.options.map((o: any) => ({
-                //       option_id: o.option_id,
-                //       label: o.label,
-                //       image_url: o.image_url,
-                //       meta: o.meta || {},
-                //       variants: [],
-                //     })),
-                //   })),
-                // }))
-
-                // setSteps(mappedSteps)
             })
         }
     }, [id, mode])

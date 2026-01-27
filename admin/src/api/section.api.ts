@@ -1,37 +1,3 @@
-// // src/api/section.api.ts
-// import { api } from "./client"
-
-// // ✅ ADD THIS INTERFACE
-// export interface SectionData {
-//   id?: string
-//   name: string
-//   description?: string
-//   status?: "YES" | "NO"
-//   home_category?: "YES" | "NO"
-//   image_path?: string
-//   store_category_id?: string
-// }
-
-// export const SectionAPI = {
-//   getAll: () => api.get("/Section/list").then((r) => r.data),
-  
-//   // Single endpoint for both create and update
-//   save: (data: SectionData) => 
-//     api.post("/Section/update", data).then((r) => r.data),
-  
-//   delete: (id: string) => 
-//     api.delete(`/Section/delete/${id}`).then((r) => r.data),
-  
-//   toggleStatus: (id: string, currentStatus: string) => 
-//     api.post("/Section/update", { 
-//       id, 
-//       status: currentStatus === "YES" ? "NO" : "YES" 
-//     }).then((r) => r.data),
-// }
-
-
-
-// src/api/section.api.ts - UPDATED WITH sectionId
 import { api } from "./client"
 
 export interface SectionData {
