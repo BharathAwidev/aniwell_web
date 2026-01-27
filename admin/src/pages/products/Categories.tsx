@@ -250,11 +250,11 @@ export default function Categories() {
             prev.map((cat) =>
               cat.id === editingCategory.id
                 ? {
-                    ...cat,
-                    ...formData,
-                    image_path: imagePreview || cat.image_path,
-                    updatedAt: new Date().toISOString().split('T')[0],
-                  }
+                  ...cat,
+                  ...formData,
+                  image_path: imagePreview || cat.image_path,
+                  updatedAt: new Date().toISOString().split('T')[0],
+                }
                 : cat
             )
           );
@@ -310,9 +310,9 @@ export default function Categories() {
         prev.map((cat) =>
           cat.id === id
             ? {
-                ...cat,
-                status: category.status === 'YES' ? 'NO' : 'YES',
-              }
+              ...cat,
+              status: category.status === 'YES' ? 'NO' : 'YES',
+            }
             : cat
         )
       );
@@ -453,8 +453,8 @@ export default function Categories() {
                         statusFilter === 'ALL'
                           ? 'YES'
                           : statusFilter === 'YES'
-                          ? 'NO'
-                          : 'ALL'
+                            ? 'NO'
+                            : 'ALL'
                       )
                     }
                     variant={statusFilter !== 'ALL' ? 'contained' : 'outlined'}

@@ -1,7 +1,5 @@
 import { DollarSign, ShoppingCart, Users, TrendingUp } from "lucide-react"
 import KpiCard from "../../components/KpiCard"
-import OrderStatusStrip from "../../components/OrderStatusStrip"
-import RecentOrdersTable from "../../components/RecentOrdersTable"
 
 
 export default function Dashboard() {
@@ -31,16 +29,6 @@ export default function Dashboard() {
         />
       </div>
 
-      {/* ORDER STATUS */}
-      <OrderStatusStrip />
-
-      {/* CHART PLACEHOLDER */}
-      <div className="h-64 rounded-xl bg-[hsl(var(--color-surface))] flex items-center justify-center text-[hsl(var(--text-muted))] shadow-sm">
-        Revenue Chart (Coming Soon)
-      </div>
-
-      {/* RECENT ORDERS */}
-      <RecentOrdersTable />
     </div>
   )
 }
