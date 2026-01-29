@@ -46,7 +46,7 @@ export const sidebarNav: SidebarSection[] = [
     items: [
       {
         label: "Services",
-        // to: "/products",
+        to: "/products",
         children: [
           {
             label: "All Services",
