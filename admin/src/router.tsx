@@ -12,6 +12,7 @@ import Subcategories from "./pages/products/Subcategories";
 import FlowBuilderPage from "./flow-builder/FlowBuilderPage";
 import RuntimeStepperPage from "./flow-builder/RuntimeStepperPage";
 import FlowListPage from "./pages/flow/FlowListPage";
+import BannerCarousel from "./pages/banners/BannerCarousel";
 
 export const router = createBrowserRouter([
   {
@@ -56,6 +57,9 @@ export const router = createBrowserRouter([
       { path: "products/create", element: <AddProduct /> },
       { path: "products/categories", element: <Categories /> },
       { path: "products/subcategories", element: <Subcategories /> },
+
+       // ✅ BANNER ROUTE
+      { path: "banners", element: <BannerCarousel /> },
 
       // 👇 MUST be last
       { path: "*", element: <NotFound /> },

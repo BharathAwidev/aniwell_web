@@ -5,9 +5,9 @@ import {
   ShoppingCart,
   Settings,
   Palette,
-   Tags,
+  Tags,
   Layers,
-   Building2,
+  Building2,
   MapPin,
   GitBranch,
   Users,
@@ -18,6 +18,7 @@ import {
   FolderKanban,
   ClipboardList,
   MessageSquare,
+  Image,  // Added this import for Banner icon
 } from "lucide-react";
 
 export type SidebarItem = {
@@ -66,7 +67,7 @@ export const sidebarNav: SidebarSection[] = [
             match: ["/products/categories"],
             icon: Tags,
           },
-           {
+          {
             label: "Subcategories",
             to: "/products/subcategories",
             match: ["/products/subcategories"],
@@ -81,7 +82,6 @@ export const sidebarNav: SidebarSection[] = [
     items: [
       {
         label: "Orders",
-        // to: "/orders",
         children: [
           { label: "All Orders", to: "/orders", icon: ShoppingCart },
           { label: "Pending", to: "/orderview" },
@@ -89,7 +89,23 @@ export const sidebarNav: SidebarSection[] = [
       },
     ],
   },
-      /* ✅ FIXED BUSINESS SECTION */
+  {
+    section: "Content", // Added a proper section for Banner
+    items: [
+      {
+        label: "Banner", // ✅ Now this is correctly placed inside items
+        icon: Image,
+        children: [
+          {
+            label: "Carousel",
+            to: "/banners",
+            icon: Layers,
+            match: ["/banners", "/banners/*"]
+          },
+        ],
+      },
+    ],
+  },
   {
     section: "Business",
     items: [
@@ -104,7 +120,6 @@ export const sidebarNav: SidebarSection[] = [
       },
     ],
   },
-
   {
     section: "Users",
     items: [
@@ -119,8 +134,6 @@ export const sidebarNav: SidebarSection[] = [
       },
     ],
   },
-
-  /* ✅ WORKS: CLIENTS IS A SEPARATE PAGE */
   {
     section: "Works",
     items: [
