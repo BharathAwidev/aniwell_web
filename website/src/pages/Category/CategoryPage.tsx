@@ -303,7 +303,7 @@ const CategoryPage = () => {
         {/* Breadcrumb */}
         <nav className="mb-8">
           <div className="flex items-center space-x-2 text-sm">
-            <Link to="/" className="text-gray-500 hover:text-gray-900 transition-colors duration-300">Home</Link>
+            <Link to="/" className="text-gray-500 hover:text-orange-600 transition-colors duration-300">Home</Link>
             <ChevronRight className="w-4 h-4 text-gray-300" />
             <span className="text-gray-900 font-medium">{categoryData.name}</span>
           </div>
@@ -312,8 +312,8 @@ const CategoryPage = () => {
         {/* Hero Section */}
         <div className="bg-gray-50 rounded-2xl p-8 mb-12">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-blue-500" />
+            <div className="w-8 h-8 bg-orange-50 rounded-lg flex items-center justify-center">
+              <Sparkles className="w-4 h-4 text-orange-500" />
             </div>
             <h1 className="text-3xl md:text-4xl font-semibold text-gray-900">
               {categoryData.name}
@@ -334,7 +334,7 @@ const CategoryPage = () => {
                 <Link
                   key={subCategory.id}
                   to={`/${categoryData.slug}/${subCategory.slug}`}
-                  className="group bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-gray-200 transition-all duration-300 hover:shadow-sm"
+                  className="group bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-orange-200 transition-all duration-300 hover:shadow-lg"
                 >
                   <div className="relative h-56 overflow-hidden">
                     <img 
@@ -354,13 +354,13 @@ const CategoryPage = () => {
                   </div>
                   <div className="p-6">
                     <div className="flex items-start justify-between mb-4">
-                      <h3 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                      <h3 className="text-xl font-semibold text-gray-900 group-hover:text-orange-600 transition-colors duration-300">
                         {subCategory.name}
                       </h3>
-                      <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-blue-600 transition-colors duration-300" />
+                      <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-orange-600 transition-colors duration-300" />
                     </div>
                     <p className="text-gray-600 text-sm mb-4 line-clamp-2">{subCategory.description}</p>
-                    <span className="text-sm font-medium text-gray-900">
+                    <span className="text-sm font-medium text-gray-900 group-hover:text-orange-600 transition-colors duration-300">
                       View Designs →
                     </span>
                   </div>
@@ -370,8 +370,8 @@ const CategoryPage = () => {
           </div>
         ) : (
           <div className="bg-gray-50 rounded-2xl p-12 text-center">
-            <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Sparkles className="w-8 h-8 text-blue-500" />
+            <div className="w-16 h-16 bg-orange-50 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Sparkles className="w-8 h-8 text-orange-500" />
             </div>
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Content Coming Soon</h2>
             <p className="text-gray-600 max-w-md mx-auto">
@@ -388,7 +388,7 @@ const CategoryPage = () => {
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
             Our team of experts is here to help you create the perfect space.
           </p>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300">
+          <button className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 hover:shadow-lg">
             Book Free Consultation
           </button>
         </div>

@@ -12,10 +12,14 @@ import Subcategories from "./pages/products/Subcategories";
 import FlowBuilderPage from "./flow-builder/FlowBuilderPage";
 import RuntimeStepperPage from "./flow-builder/RuntimeStepperPage";
 import FlowListPage from "./pages/flow/FlowListPage";
+
 import ServiceCreate from "./pages/service/ServiceCreate";
 import ServiceList from "./pages/service/ServiceList";
 import ServiceEdit from "./pages/service/ServiceEdit";
 import ServicePreview from "./pages/service/ServicePreview";
+
+import BannerCarousel from "./pages/banners/BannerCarousel";
+
 
 export const router = createBrowserRouter([
   {
@@ -64,6 +68,9 @@ export const router = createBrowserRouter([
       { path: "/services/create", element: <ServiceCreate /> },  // /services/create
       { path: "/services/:id/edit", element: <ServiceEdit /> },  // /services/12/edit
       { path: "/services/:id/preview", element: <ServicePreview /> }, // /services/12/preview
+
+       // ✅ BANNER ROUTE
+      { path: "banners", element: <BannerCarousel /> },
 
       // 👇 MUST be last
       { path: "*", element: <NotFound /> },
