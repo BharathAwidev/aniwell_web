@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router";
 import AdminLayout from "./layouts/AdminLayout";
-import Dashboard from "./pages/dashboard/Dashboard";
 import NotFound from "./pages/NotFound";
 import AuthLayout from "./pages/auth/AuthLayout";
 import Login from "./pages/auth/Login";
@@ -9,16 +8,15 @@ import Products from "./pages/products/Products";
 import AddProduct from "./pages/products/AddProducts";
 import Categories from "./pages/products/Categories";
 import Subcategories from "./pages/products/Subcategories";
-import FlowBuilderPage from "./flow-builder/FlowBuilderPage";
-import RuntimeStepperPage from "./flow-builder/RuntimeStepperPage";
-import FlowListPage from "./pages/flow/FlowListPage";
 
 import ServiceCreate from "./pages/service/ServiceCreate";
 import ServiceList from "./pages/service/ServiceList";
 import ServiceEdit from "./pages/service/ServiceEdit";
 import ServicePreview from "./pages/service/ServicePreview";
-
-import BannerCarousel from "./pages/banners/BannerCarousel";
+import SlideCreate from "./pages/banners/BannerCreate";
+import SlideList from "./pages/banners/BannerList";
+import SlidePreview from "./pages/banners/BannerPreview";
+import SlideEdit from "./pages/banners/BannerEdit";
 
 
 export const router = createBrowserRouter([
@@ -34,7 +32,7 @@ export const router = createBrowserRouter([
     path: "/",
     element: <AdminLayout />,
     children: [
-      { index: true, element: <ServiceCreate /> },
+      { index: true, element: <SlideList /> },
       // {
       //   path: "settings/theme",
       //   element: <QuestionTable />,
@@ -70,7 +68,11 @@ export const router = createBrowserRouter([
       { path: "/services/:id/preview", element: <ServicePreview /> }, // /services/12/preview
 
        // ✅ BANNER ROUTE
-      { path: "banners", element: <BannerCarousel /> },
+      { path: "/slides", element: <SlideList/> },
+       { path: "/slides/create", element: <SlideCreate /> },
+      { path: "/slides/:id/edit", element: <SlideEdit /> },
+      { path: "/slides/:id/preview", element: <SlidePreview /> },
+      
 
       // 👇 MUST be last
       { path: "*", element: <NotFound /> },

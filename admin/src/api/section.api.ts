@@ -10,13 +10,13 @@ export interface SectionData {
   store_category_id?: string
 }
 
-// ✅ UPDATED: Changed from section_id to sectionId
+
 export interface SubcategoryData {
   id?: string
   name: string
   description?: string
   status?: "YES" | "NO" | string
-  sectionId?: string  // ✅ CHANGED from section_id to sectionId
+  sectionId?: string 
   sectionName?: string
 }
 

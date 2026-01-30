@@ -11,7 +11,9 @@ export const api = axios.create({
 
 // Optional: request interceptor
 api.interceptors.request.use((config) => {
-  config.headers["Content-Type"] = "application/json"
+  if (!(config.data instanceof FormData)) {
+    config.headers["Content-Type"] = "application/json"
+  }
     config.headers["api-access-key"] = "A31AB78E-C4C7-4C9E-AD98-6D6A1B801E45"
   return config
 })
