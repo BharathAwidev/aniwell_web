@@ -1,0 +1,205 @@
+/* Page */
+
+.page {
+  background: #f5f7fb;
+  min-height: 100vh;
+  padding: 32px;
+}
+
+/* Card */
+
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 28px 36px;
+  max-width: 1200px;
+  margin: auto;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+
+.title {
+  font-size: 20px;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+/* Grid Layout */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.full {
+  grid-column: span 2;
+}
+
+/* Fields */
+
+.field label {
+  display: block;
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  min-height: 46px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #dcdcdc;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.field textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+/* Sections */
+
+section {
+  margin-top: 36px;
+}
+
+section h3 {
+  font-size: 15px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+/* Boxed Card */
+
+.boxed {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+/* Rows */
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 16px;
+  margin-bottom: 14px;
+}
+
+.kv-row {
+  display: grid;
+  grid-template-columns: 1.2fr 2fr auto;
+  align-items: center;
+  column-gap: 16px;
+  margin-bottom: 14px;
+}
+
+/* Dynamic Inputs */
+
+.row input,
+.kv-row input {
+  width: 100%;
+  min-height: 46px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #dcdcdc;
+  font-size: 14px;
+}
+
+.row input:focus,
+.kv-row input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.3);
+}
+
+/* Remove Icon */
+
+.icon {
+  height: 42px;
+  width: 42px;
+  border-radius: 6px;
+  border: none;
+  background: #f3f4f6;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+.icon:hover {
+  background: #e5e7eb;
+}
+
+/* Add Link */
+
+.link {
+  margin-top: 6px;
+  background: none;
+  border: none;
+  color: #2563eb;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+}
+
+/* Footer */
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 40px;
+  padding-top: 22px;
+  border-top: 1px solid #eee;
+}
+
+/* Buttons */
+
+.btn {
+  min-width: 110px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn.primary {
+  background: #2563eb;
+  color: white;
+}
+
+.btn.primary:hover {
+  background: #1d4ed8;
+}
+
+.btn.ghost {
+  background: transparent;
+  border: 1px solid #d1d5db;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full {
+    grid-column: span 1;
+  }
+}

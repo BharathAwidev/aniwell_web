@@ -12,6 +12,10 @@ import Subcategories from "./pages/products/Subcategories";
 import FlowBuilderPage from "./flow-builder/FlowBuilderPage";
 import RuntimeStepperPage from "./flow-builder/RuntimeStepperPage";
 import FlowListPage from "./pages/flow/FlowListPage";
+import ServiceCreate from "./pages/service/ServiceCreate";
+import ServiceList from "./pages/service/ServiceList";
+import ServiceEdit from "./pages/service/ServiceEdit";
+import ServicePreview from "./pages/service/ServicePreview";
 
 export const router = createBrowserRouter([
   {
@@ -26,7 +30,7 @@ export const router = createBrowserRouter([
     path: "/",
     element: <AdminLayout />,
     children: [
-      { index: true, element: <RuntimeStepperPage /> },
+      { index: true, element: <ServiceCreate /> },
       // {
       //   path: "settings/theme",
       //   element: <QuestionTable />,
@@ -56,9 +60,22 @@ export const router = createBrowserRouter([
       { path: "products/create", element: <AddProduct /> },
       { path: "products/categories", element: <Categories /> },
       { path: "products/subcategories", element: <Subcategories /> },
+       { path: "/services", element: <ServiceList /> },           // /services
+      { path: "/services/create", element: <ServiceCreate /> },  // /services/create
+      { path: "/services/:id/edit", element: <ServiceEdit /> },  // /services/12/edit
+      { path: "/services/:id/preview", element: <ServicePreview /> }, // /services/12/preview
 
       // 👇 MUST be last
       { path: "*", element: <NotFound /> },
     ],
   },
+//   {
+//   path: "services",
+//   children: [
+//     { path: "", element: <ServiceList /> },           // /services
+//     { path: "create", element: <ServiceCreate /> },  // /services/create
+//     { path: ":id/edit", element: <ServiceEdit /> },  // /services/12/edit
+//     { path: ":id/preview", element: <ServicePreview /> } // /services/12/preview
+//   ]
+// }
 ]);
