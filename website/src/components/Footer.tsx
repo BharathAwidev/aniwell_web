@@ -8,15 +8,11 @@ import {
   Phone, 
   MapPin, 
   ChevronRight,
-  Download,
   Apple,
   Play,
 } from "lucide-react";
 
 const Footer = () => {
-
-
-
   const socialLinks = [
     { icon: Facebook, label: "Facebook", href: "#", color: "hover:text-blue-500" },
     { icon: Instagram, label: "Instagram", href: "#", color: "hover:text-pink-500" },
@@ -191,10 +187,6 @@ const Footer = () => {
         <div className="mb-16">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full border border-blue-500/20 mb-4">
-                <Download className="w-4 h-4 text-blue-400" />
-                <span className="text-sm text-blue-300 font-medium">Mobile Experience</span>
-              </div>
               <h3 className="text-2xl md:text-3xl font-bold mb-4">
                 Download Our App
               </h3>
@@ -235,21 +227,12 @@ const Footer = () => {
           </div>
         </div>
 
-       
-
-    
-        {/* Copyright & Links */}
+        {/* Copyright */}
         <div className="pt-8 border-t border-gray-800">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="text-center md:text-left">
-              <p className="text-gray-400 text-sm">
-                © {new Date().getFullYear()} Aniwell Interiors. All rights reserved.
-              </p>
-              <p className="text-gray-500 text-xs mt-2">
-                GST No: 27AAACA1234B1Z1 | CIN: U74999MH2015PTC123456
-              </p>
-            </div>
-      
+          <div className="flex justify-center">
+            <p className="text-gray-400 text-sm text-center">
+              © {new Date().getFullYear()} Aniwell Interiors. All rights reserved.
+            </p>
           </div>
         </div>
       </div>

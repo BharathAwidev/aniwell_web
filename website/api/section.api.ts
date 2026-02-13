@@ -20,6 +20,7 @@ export interface SubcategoryData {
   status?: "YES" | "NO" | string
   sectionId?: string  // ✅ CHANGED from section_id to sectionId
   sectionName?: string
+  section_id?: string;
 }
 
 export const SectionAPI = {

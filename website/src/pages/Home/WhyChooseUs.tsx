@@ -45,7 +45,7 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="w-full py-12 md:py-16 bg-[#e0e0e0] relative overflow-hidden"> {/* Reduced padding, changed bg color */}
+    <section className="w-full py-12 md:py-16 bg-gray-100 relative overflow-hidden">
       {/* Background Pattern - Simplified */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-48 h-48 bg-orange-300 rounded-full -translate-x-24 -translate-y-24"></div>
@@ -58,21 +58,21 @@ const WhyChooseUs = () => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Why choose us
           </h2>
-          <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto"> {/* Changed to gray-700 for better contrast */}
+          <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
             Discover why thousands trust us for their dream interiors
           </p>
         </div>
 
         {/* Enhanced Marquee with Cards - Reduced spacing */}
         <div className="max-w-7xl mx-auto overflow-hidden">
-          <div className="relative py-4"> {/* Reduced padding */}
+          <div className="relative py-4">
             {/* Gradient Overlays */}
-            <div className="absolute left-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-r from-[#e0e0e0] to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-l from-[#e0e0e0] to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute left-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-r from-gray-100 to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-l from-gray-100 to-transparent z-10 pointer-events-none"></div>
             
             {/* Marquee Container */}
             <div className="flex overflow-hidden">
-              <div className="flex animate-marquee space-x-4 md:space-x-6"> {/* Reduced space */}
+              <div className="flex animate-marquee space-x-4 md:space-x-6">
                 {[...scrollingStats, ...scrollingStats].map((stat, index) => (
                   <div 
                     key={index}
@@ -89,7 +89,7 @@ const WhyChooseUs = () => {
                     
                     {/* Text Content */}
                     <div className="text-center">
-                      <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-1"> {/* Reduced font size */}
+                      <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-1">
                         {stat.text}
                         {stat.sup && (
                           <sup className="text-sm md:text-base text-orange-600 ml-1">{stat.sup}</sup>
@@ -107,9 +107,9 @@ const WhyChooseUs = () => {
         </div>
 
         {/* Mini Stats Bar - Reduced spacing */}
-        <div className="max-w-5xl mx-auto mt-8"> {/* Reduced margin-top */}
-          <div className="bg-gradient-to-r from-gray-50 to-white p-4 md:p-6 rounded-xl shadow-md border border-gray-200"> {/* Reduced padding */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4"> {/* Reduced gap */}
+        <div className="max-w-5xl mx-auto mt-8">
+          <div className="bg-gradient-to-r from-gray-50 to-white p-4 md:p-6 rounded-xl shadow-md border border-gray-200">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
                 { value: "10 Years", label: "Warranty", color: "text-orange-600" },
                 { value: "45 Days", label: "Move-in", color: "text-blue-600" },
@@ -117,10 +117,10 @@ const WhyChooseUs = () => {
                 { value: "100+ Cities", label: "Presence", color: "text-purple-600" }
               ].map((item, index) => (
                 <div key={index} className="text-center">
-                  <div className={`text-xl md:text-2xl font-bold ${item.color} mb-1`}> {/* Reduced font size */}
+                  <div className={`text-xl md:text-2xl font-bold ${item.color} mb-1`}>
                     {item.value}
                   </div>
-                  <div className="text-gray-600 text-sm md:text-base"> {/* Reduced font size */}
+                  <div className="text-gray-600 text-sm md:text-base">
                     {item.label}
                   </div>
                 </div>
@@ -130,15 +130,15 @@ const WhyChooseUs = () => {
         </div>
 
         {/* Footer Notes - Reduced spacing */}
-        <div className="max-w-3xl mx-auto mt-8 pt-6 border-t border-gray-300"> {/* Reduced margin-top and padding-top */}
-          <div className="text-center text-gray-600 text-sm md:text-base"> {/* Reduced font size */}
-            <div className="inline-flex flex-col md:flex-row gap-3 md:gap-6"> {/* Reduced gap */}
+        <div className="max-w-3xl mx-auto mt-8 pt-6 border-t border-gray-300">
+          <div className="text-center text-gray-600 text-sm md:text-base">
+            <div className="inline-flex flex-col md:flex-row gap-3 md:gap-6">
               <div className="flex items-center justify-center gap-1">
-                <span className="w-2 h-2 bg-orange-500 rounded-full"></span> {/* Reduced size */}
+                <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
                 <p><sup className="text-orange-600 font-bold">¹</sup> Industry-leading warranty program</p>
               </div>
               <div className="flex items-center justify-center gap-1">
-                <span className="w-2 h-2 bg-blue-500 rounded-full"></span> {/* Reduced size */}
+                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                 <p><sup className="text-blue-600 font-bold">²</sup> Fastest project completion guarantee</p>
               </div>
             </div>

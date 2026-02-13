@@ -120,7 +120,7 @@ const Services = () => {
   };
 
   return (
-    <section className="w-full py-12 md:py-16 bg-[#bfbfbf]">
+    <section className="w-full py-12 md:py-16 bg-gray-100">
       <div className="container mx-auto px-4 md:px-8 lg:px-16">
         {/* Main Heading Section */}
         <div className="max-w-4xl mx-auto text-center mb-10 md:mb-12">
@@ -208,12 +208,7 @@ const Services = () => {
           <div className="border-t border-gray-400"></div>
         </div>
 
-        {/* Note Section */}
-        <div className="max-w-4xl mx-auto mt-8 text-center">
-          <p className="text-sm text-gray-600 italic">
-            Explore our comprehensive interior design services for your home and office.
-          </p>
-        </div>
+      
       </div>
     </section>
   );
