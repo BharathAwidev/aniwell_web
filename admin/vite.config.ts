@@ -13,7 +13,7 @@ export default defineConfig({
     // 🔥 ADD THIS PROXY CONFIGURATION
     proxy: {
       '/api': {
-        target: 'http://apitaskmgt.biyss.com',
+        target: 'http://aniwell.shreesoftit.com/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
         secure: false,

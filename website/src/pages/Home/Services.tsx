@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { SectionAPI } from "../../../api/section.api";
-import type { SectionData } from "../../../api/section.api";
+import { SectionAPI } from "../../api/section.api";
+import type { SectionData } from "../../api/section.api";
 
 // Import local images
 import modularInteriorsImg from "../../assets/Спальня.jpg";

@@ -532,8 +532,8 @@
 // src/components/Navbar.tsx
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { SectionAPI } from "../../api/section.api";
-import { type SectionData, type SubcategoryData } from "../../api/section.api";
+import { SectionAPI } from "../api/section.api";
+import { type SectionData, type SubcategoryData } from "../api/section.api";
 
 // Import your logo image
 import logo from "../assets/logo.png"; // Adjust path as needed

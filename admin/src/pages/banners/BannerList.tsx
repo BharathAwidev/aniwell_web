@@ -71,10 +71,10 @@ export default function SlideList() {
 
 
 
-const handleRestore = async (id: number) => {
-  await restoreSlide(id);
-  load(); // reload list
-};
+  const handleRestore = async (id: number) => {
+    await restoreSlide(id);
+    load(); // reload list
+  };
 
   return (
     <div className="list-page">
@@ -206,14 +206,14 @@ const handleRestore = async (id: number) => {
                       </button>
 
                       {row.deleted_at && (
-    <button
-      className="icon-btn restore"
-      onClick={() => handleRestore(row.id)}
-      title="Restore"
-    >
-      ↺
-    </button>
-  )}
+                        <button
+                          className="icon-btn restore"
+                          onClick={() => handleRestore(row.id)}
+                          title="Restore"
+                        >
+                          ↺
+                        </button>
+                      )}
                     </div>
                   </td>
                 </tr>

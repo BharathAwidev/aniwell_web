@@ -972,8 +972,8 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import PopupForm from "../../components/PopupForm";
-import { ServiceAPI } from "../../../api/service.api";
-import { SectionAPI, type SubcategoryData } from "../../../api/section.api";
+import { ServiceAPI } from "../../api/service.api";
+import { SectionAPI, type SubcategoryData } from "../../api/section.api";
 import { ChevronRight } from "lucide-react";
 
 interface DesignFeatures {

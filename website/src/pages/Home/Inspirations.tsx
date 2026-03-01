@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { SectionAPI } from "../../../api/section.api";
-import type { SectionData, SubcategoryData } from "../../../api/section.api";
+import { SectionAPI } from "../../api/section.api";
+import type { SectionData, SubcategoryData } from "../../api/section.api";
 
 // Import local images
 import livingRoomImg from "../../assets/living room.jpg";

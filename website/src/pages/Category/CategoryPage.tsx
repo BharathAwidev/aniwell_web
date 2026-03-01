@@ -406,8 +406,8 @@
 // src/pages/Category/CategoryPage.tsx
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { SectionAPI } from '../../../api/section.api';
-import type { SectionData, SubcategoryData } from '../../../api/section.api';
+import { SectionAPI } from '../../api/section.api';
+import type { SectionData, SubcategoryData } from '../../api/section.api';
 import { ChevronRight, Sparkles, Info, Phone, FileText, ArrowRight } from 'lucide-react';
 
 // Interface for transformed category data

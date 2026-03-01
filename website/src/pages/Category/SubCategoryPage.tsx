@@ -463,8 +463,8 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import PopupForm from "../../components/PopupForm";
-import { ServiceAPI, type ServiceData } from "../../../api/service.api";
-import { SectionAPI, type SubcategoryData } from "../../../api/section.api";
+import { ServiceAPI, type ServiceData } from "../../api/service.api";
+import { SectionAPI, type SubcategoryData } from "../../api/section.api";
 import { ChevronRight } from "lucide-react";
 
 interface DesignItem {

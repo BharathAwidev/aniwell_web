@@ -374,7 +374,7 @@
 
 
 import { useEffect, useState, useRef } from "react";
-import { getSlides, type SlidesResponse, type SlideData } from "../../../api/slide.api"; // Import from slide.api.ts
+import { getSlides, type SlidesResponse, type SlideData } from "../../api/slide.api"; // Import from slide.api.ts
 import PopupForm from "../../components/PopupForm";
 
 // CSS Animations (same as before)
@@ -655,7 +655,7 @@ const HomeCarousel = () => {
       return filePath;
     }
     
-    const baseUrl = "http://apitaskmgt.biyss.com";
+    const baseUrl = "http://aniwell.shreesoftit.com";
     
     if (filePath.startsWith('/')) {
       return `${baseUrl}${filePath}`;
