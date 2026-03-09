@@ -69,10 +69,10 @@ const Footer = () => {
       {/* Decorative Elements */}
       <div className="relative">
         {/* Top Pattern */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/30 to-transparent" />
         
         {/* Floating Elements */}
-        <div className="absolute top-10 left-10 w-32 h-32 bg-amber-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-10 left-10 w-32 h-32 bg-orange-500/5 rounded-full blur-3xl" />
         <div className="absolute bottom-10 right-10 w-40 h-40 bg-blue-500/5 rounded-full blur-3xl" />
       </div>
 
@@ -113,7 +113,7 @@ const Footer = () => {
           {/* OFFERINGS */}
           <div>
             <h3 className="text-lg font-bold mb-6 pb-3 border-b border-gray-800 flex items-center gap-2">
-              <span className="text-amber-400">Our</span>
+              <span className="text-orange-400">Our</span>
               <span>Services</span>
             </h3>
             <ul className="space-y-3">
@@ -123,7 +123,7 @@ const Footer = () => {
                     href="#" 
                     className="group flex items-center text-gray-300 hover:text-white text-sm transition-all duration-300 hover:translate-x-1"
                   >
-                    <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 text-amber-400 transition-all duration-300 mr-1" />
+                    <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 text-orange-400 transition-all duration-300 mr-1" />
                     <span>{item}</span>
                   </a>
                 </li>
@@ -134,7 +134,7 @@ const Footer = () => {
           {/* COMPANY */}
           <div>
             <h3 className="text-lg font-bold mb-6 pb-3 border-b border-gray-800 flex items-center gap-2">
-              <span className="text-amber-400">Company</span>
+              <span className="text-orange-400">Company</span>
               <span>Info</span>
             </h3>
             <ul className="space-y-3">
@@ -144,7 +144,7 @@ const Footer = () => {
                     href="#" 
                     className="group flex items-center text-gray-300 hover:text-white text-sm transition-all duration-300 hover:translate-x-1"
                   >
-                    <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 text-amber-400 transition-all duration-300 mr-1" />
+                    <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 text-orange-400 transition-all duration-300 mr-1" />
                     <span>{item}</span>
                   </a>
                 </li>
@@ -155,21 +155,21 @@ const Footer = () => {
           {/* CONTACT US */}
           <div>
             <h3 className="text-lg font-bold mb-6 pb-3 border-b border-gray-800 flex items-center gap-2">
-              <span className="text-amber-400">Get In</span>
+              <span className="text-orange-400">Get In</span>
               <span>Touch</span>
             </h3>
             <div className="space-y-6">
               {contactInfo.map((info) => (
                 <div key={info.title} className="group">
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl flex items-center justify-center border border-gray-700 group-hover:border-amber-500/30 transition-all duration-300">
-                      <info.icon className="w-5 h-5 text-amber-400" />
+                    <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl flex items-center justify-center border border-gray-700 group-hover:border-orange-500/30 transition-all duration-300">
+                      <info.icon className="w-5 h-5 text-orange-400" />
                     </div>
                     <div>
                       <div className="text-gray-400 text-xs font-medium uppercase tracking-wider mb-1">
                         {info.title}
                       </div>
-                      <div className="text-white font-medium mb-1 group-hover:text-amber-300 transition-colors duration-300">
+                      <div className="text-white font-medium mb-1 group-hover:text-orange-300 transition-colors duration-300">
                         {info.content}
                       </div>
                       <div className="text-gray-500 text-xs">

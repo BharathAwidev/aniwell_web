@@ -4,13 +4,14 @@ import Inspirations from "./Inspirations";
 import WhyChooseUs from "./WhyChooseUs";
 import Estimate from "./Estimate";
 import FAQ from "./FAQ";
+import PriceCalculationPage from "../PriceCalculationPage";
 // import Footer from "../../components/Footer";
 
 const Home = () => {
   return (
     <>
       <HomeCarousel />
-      <Services />
+      <PriceCalculationPage />
       <Inspirations />
       <WhyChooseUs />
       <Estimate />

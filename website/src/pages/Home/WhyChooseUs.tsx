@@ -40,7 +40,7 @@ const WhyChooseUs = () => {
       bgColor: "bg-gradient-to-br from-indigo-500 to-indigo-600"
     },
     {
-      text: "2 countries",
+      text: "10+ Offices ",
       icon: Globe,
       bgColor: "bg-gradient-to-br from-teal-500 to-teal-600"
     },

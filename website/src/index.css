@@ -2,10 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
-/* ---------------------------
-   Base Layout
---------------------------- */
+/* Base layout */
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -22,26 +19,10 @@ body {
   overflow-x: hidden;
 }
 
-
-/* Root container */
-
 #root {
   width: 100%;
-  max-width: 100%;
   overflow-x: hidden;
 }
-
-
-/* Reset */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 
 /* Images */
 
@@ -51,7 +32,6 @@ img {
   display: block;
 }
 
-
 /* Links */
 
 a {
@@ -59,36 +39,7 @@ a {
   color: inherit;
 }
 
-
-/* ---------------------------
-   Text Clamp Utilities
---------------------------- */
-
-.line-clamp-1 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-}
-
-.line-clamp-2 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-
-.line-clamp-3 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-}
-
-
-/* ---------------------------
-   Scrollbar Styling
---------------------------- */
+/* Scrollbar */
 
 ::-webkit-scrollbar {
   width: 8px;
@@ -97,7 +48,6 @@ a {
 
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
-  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -105,36 +55,12 @@ a {
   border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #6b7280;
-}
+/* Animations */
 
-
-/* Hide scrollbar utility */
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-
-/* ---------------------------
-   Animations
---------------------------- */
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
+@keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
@@ -142,28 +68,58 @@ a {
   }
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.animate-caption {
+  animation: fadeUp .6s ease forwards;
 }
 
-
-/* Animation Utilities */
-
-.animate-fadeIn {
-  animation: fadeIn 0.25s ease-out;
+.animate-title {
+  animation: fadeUp .8s ease .1s forwards;
 }
 
-.animate-slideUp {
-  animation: slideUp 0.35s ease-out;
+.animate-desc {
+  animation: fadeUp .8s ease .2s forwards;
 }
 
-.animate-fadeInUp {
-  animation: fadeInUp 0.5s ease-out forwards;
+/* 3D slider */
+
+.perspective {
+  perspective: 1400px;
+}
+
+.slide3d {
+  position: absolute;
+  inset: 0;
+  transition: transform 1s cubic-bezier(.4,0,.2,1), opacity 1s;
+}
+
+.slide3d.center {
+  transform: translateZ(0) scale(1);
+  opacity: 1;
+  z-index: 10;
+}
+
+.slide3d.left {
+  transform: translateX(-60%) translateZ(-200px) rotateY(25deg) scale(.9);
+  opacity: .5;
+}
+
+.slide3d.right {
+  transform: translateX(60%) translateZ(-200px) rotateY(-25deg) scale(.9);
+  opacity: .5;
+}
+
+.slide3d.hidden {
+  opacity: 0;
+}
+
+/* overlay */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,.7),
+    rgba(0,0,0,.2)
+  );
 }

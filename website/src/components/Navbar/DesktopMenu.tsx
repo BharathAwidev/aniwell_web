@@ -15,9 +15,14 @@ const DesktopMenu = ({ categories }: Props) => {
       {categories.map((cat) => (
         <div key={cat.id} className="relative group">
 
-          {/* Menu button */}
+          {/* Menu Button */}
           <button
-            className="px-3 py-2 font-medium text-gray-700 hover:text-blue-600 transition-colors"
+            className="
+            px-3 py-2 font-medium text-gray-700
+            hover:text-primary
+            transition-colors duration-200
+            cursor-pointer
+            "
           >
             {cat.name}
           </button>
@@ -28,12 +33,12 @@ const DesktopMenu = ({ categories }: Props) => {
               className="
               absolute top-full left-0 mt-2 w-64
               bg-white rounded-xl shadow-lg border border-gray-100
-              opacity-0 invisible
-              group-hover:opacity-100 group-hover:visible
+              opacity-0 invisible translate-y-2
+              group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
               transition-all duration-200
+              z-40
               "
             >
-
               <div className="px-4 py-2 text-xs font-semibold text-gray-400 uppercase">
                 {cat.name}
               </div>
@@ -42,7 +47,11 @@ const DesktopMenu = ({ categories }: Props) => {
                 <button
                   key={sub.id}
                   onClick={() => navigate(getRoute(cat.slug, sub.slug))}
-                  className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                  className="
+                  block w-full text-left px-4 py-3 text-sm text-gray-700
+                  hover:bg-orange-200 hover:text-primary
+                  transition-colors
+                  "
                 >
                   {sub.name}
                 </button>

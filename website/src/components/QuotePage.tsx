@@ -251,8 +251,8 @@ const QuotePage = () => {
               </p>
             </div>
             
-            <div className="bg-amber-50 border border-amber-100 rounded-xl p-4">
-              <h4 className="font-bold text-amber-800 mb-2">Renovation of existing home</h4>
+            <div className="bg-orange-50 border border-orange-100 rounded-xl p-4">
+              <h4 className="font-bold text-orange-800 mb-2">Renovation of existing home</h4>
               <p className="text-gray-700">
                 Everything in full home interiors along with any additional demolition and civil work required.
               </p>
@@ -364,14 +364,14 @@ const QuotePage = () => {
                     <div 
                       className={`border-2 rounded-2xl p-8 cursor-pointer transition-all duration-300 hover:shadow-lg ${
                         formData.scopeOfWork === 'renovation' 
-                          ? 'border-amber-400 bg-gradient-to-br from-amber-50 to-white shadow-md' 
+                          ? 'border-orange-400 bg-gradient-to-br from-orange-50 to-white shadow-md' 
                           : 'border-gray-200 hover:border-gray-300 bg-white'
                       }`}
                       onClick={() => handleScopeChange('renovation')}
                     >
                       <div className="flex items-start space-x-4">
                         <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center ${
-                          formData.scopeOfWork === 'renovation' ? 'border-amber-500 bg-amber-500' : 'border-gray-300 bg-white'
+                          formData.scopeOfWork === 'renovation' ? 'border-orange-500 bg-orange-500' : 'border-gray-300 bg-white'
                         }`}>
                           {formData.scopeOfWork === 'renovation' && (
                             <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -381,7 +381,7 @@ const QuotePage = () => {
                         </div>
                         <div className="flex-1">
                           <h3 className="text-2xl font-bold text-gray-900 mb-3">Renovation of existing home</h3>
-                          <div className="flex items-center text-amber-600">
+                          <div className="flex items-center text-orange-600">
                             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
@@ -441,7 +441,7 @@ const QuotePage = () => {
                             ? `border-teal-400 shadow-lg ${
                                 pkg.id === 1 ? 'bg-gradient-to-b from-teal-50 to-white' :
                                 pkg.id === 2 ? 'bg-gradient-to-b from-emerald-50 to-white' :
-                                'bg-gradient-to-b from-amber-50 to-white'
+                                'bg-gradient-to-b from-orange-50 to-white'
                               }` 
                             : 'border-gray-200 hover:border-gray-300 bg-white'
                         }`}
@@ -454,7 +454,7 @@ const QuotePage = () => {
                               <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                                 pkg.priceLevel === 'Affordable' ? 'bg-teal-100 text-teal-800' : 
                                 pkg.priceLevel === 'Mid-range' ? 'bg-emerald-100 text-emerald-800' : 
-                                'bg-amber-100 text-amber-800'
+                                'bg-orange-100 text-orange-800'
                               }`}>
                                 {pkg.priceLevel} pricing
                               </span>
@@ -675,7 +675,7 @@ const QuotePage = () => {
                     </span>
                   )}
                   {formData.selectedPackage > 0 && (
-                    <span className="bg-amber-100 text-amber-800 px-4 py-2 rounded-full text-base font-medium">
+                    <span className="bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-base font-medium">
                       {packages.find(p => p.id === formData.selectedPackage)?.name} Package
                     </span>
                   )}
