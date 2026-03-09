@@ -143,34 +143,33 @@ const SubCategoryPage = () => {
 
         {/* Subcategory Tabs */}
 
-        <div className="flex space-x-6 border-b mb-10 overflow-x-auto">
+ <div className="flex space-x-6 border-b mb-10 overflow-x-auto">
 
-          {currentCategory.subCategories.map(sub => {
+  {currentCategory.subCategories.map(sub => {
 
-            const slug = sub.slug
+    const slug = sub.slug
 
-            return (
+    return (
 
-              <button
-                key={sub.id}
-                onClick={() => {
-                  setActiveTab(slug)
-                  navigate(`/${category}/${slug}`)
-                }}
-                className={`pb-3 whitespace-nowrap ${
-                  activeTab === slug
-                    ? "border-b-2 border-orange-500 text-gray-900"
-                    : "text-gray-500"
-                }`}
-              >
-                {sub.name}
-              </button>
+      <button
+        key={sub.id}
+        onClick={() => navigate(`/${category}/${slug}`)}
+        className={`pb-3 whitespace-nowrap transition ${
+          subCategory === slug
+            ? "border-b-2 border-orange-500 text-gray-900 font-semibold"
+            : "text-gray-500 hover:text-gray-800"
+        }`}
+      >
 
-            )
+        {sub.name}
 
-          })}
+      </button>
 
-        </div>
+    )
+
+  })}
+
+</div>
 
 
         {/* Page Title */}
